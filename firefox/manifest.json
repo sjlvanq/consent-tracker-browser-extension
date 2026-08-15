@@ -1,0 +1,26 @@
+{
+  "manifest_version": 2,
+  "name": "ConsentTracker",
+  "applications": {
+    "gecko": {
+      "id": "consenttracker@firefox-extension.local"
+    }
+  },
+  "version": "1.0.0",
+  "description": "Track user navigation events with configurable domain filtering",
+  "permissions": [
+    "storage",
+    "tabs",
+    "webNavigation",
+    "<all_urls>"
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "options_page": "options.html",
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ConsentTracker Options</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    
+    .container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    h1 {
+      color: #333;
+      margin-top: 0;
+      border-bottom: 2px solid #4285f4;
+      padding-bottom: 10px;
+    }
+    
+    h2 {
+      color: #555;
+      margin-top: 30px;
+      font-size: 1.2em;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #333;
+    }
+    
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+    
+    textarea {
+      min-height: 100px;
+      font-family: 'Courier New', monospace;
+      resize: vertical;
+    }
+    
+    .readonly-field {
+      background-color: #f9f9f9;
+      border-color: #ccc;
+    }
+    
+    button {
+      background-color: #4285f4;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      margin-right: 10px;
+    }
+    
+    button:hover {
+      background-color: #3367d6;
+    }
+    
+    button.secondary {
+      background-color: #6c757d;
+    }
+    
+    button.secondary:hover {
+      background-color: #5a6268;
+    }
+    
+    .button-group {
+      margin-top: 10px;
+    }
+    
+    .help-text {
+      font-size: 12px;
+      color: #666;
+      margin-top: 5px;
+    }
+    
+    .status-message {
+      padding: 10px;
+      border-radius: 4px;
+      margin-top: 20px;
+      display: none;
+    }
+    
+    .status-message.success {
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+    
+    .status-message.error {
+      background-color: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+    
+    .section {
+      background-color: #f8f9fa;
+      padding: 15px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>ConsentTracker Configuration</h1>
+    
+    <div class="section">
+      <h2>User Identifier</h2>
+      <div class="form-group">
+        <label for="userId">Your Unique User ID:</label>
+        <input type="text" id="userId" class="readonly-field" readonly>
+        <div class="button-group">
+          <button id="regenerateUserId" class="secondary">Regenerate User ID</button>
+        </div>
+        <p class="help-text">This identifier is used to track your navigation events. Regenerating will create a new identity.</p>
+      </div>
+    </div>
+    
+    <div class="section">
+      <h2>API Configuration</h2>
+      <div class="form-group">
+        <label for="apiEndpoint">API Endpoint URL:</label>
+        <input type="text" id="apiEndpoint" placeholder="https://api.example.com/telemetry">
+        <p class="help-text">The HTTPS endpoint where navigation events will be sent as POST requests.</p>
+      </div>
+    </div>
+    
+    <div class="section">
+      <h2>Domain Filtering</h2>
+      <div class="form-group">
+        <label for="whitelist">Whitelist (domains to track):</label>
+        <textarea id="whitelist" placeholder="example.com&#10;*.example.org&#10;specific-page.com/path"></textarea>
+        <p class="help-text">Enter one domain pattern per line. Use *.domain.com for wildcard subdomains. Leave empty to track all domains.</p>
+      </div>
+      
+      <div class="form-group">
+        <label for="blacklist">Blacklist (domains to exclude):</label>
+        <textarea id="blacklist" placeholder="ads.example.com&#10;tracker.org&#10;*.analytics.com"></textarea>
+        <p class="help-text">Enter one domain pattern per line. URLs matching these patterns will never be tracked.</p>
+      </div>
+    </div>
+    
+    <div class="button-group">
+      <button id="saveSettings">Save Settings</button>
+      <button id="resetSettings" class="secondary">Reset to Defaults</button>
+    </div>
+    
+    <div id="statusMessage" class="status-message"></div>
+  </div>
+  
+  <script src="options.js"></script>
+</body>
+</html>

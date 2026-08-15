@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "ConsentTracker",
+  "version": "1.0.0",
+  "description": "Track user navigation events with configurable domain filtering",
+  "permissions": [
+    "storage",
+    "tabs",
+    "webNavigation"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "options_page": "options.html",
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}
